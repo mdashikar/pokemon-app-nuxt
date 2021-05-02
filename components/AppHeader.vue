@@ -7,9 +7,7 @@
         to="/"
         class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
       >
-        <img
-          src="https://assets.pokemon.com/assets/cms2/img/misc/gus/buttons/logo-pokemon-79x45.png"
-        />
+        <logo />
         <span class="ml-3 text-xl">Pokemon App</span>
       </router-link>
       <nav

@@ -36,11 +36,13 @@
             </div>
           </div>
         </div>
-        <button
-          class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+        <a
+          class="flex w-2/12 mx-auto mt-16 text-white bg-gray-900 hover:bg-gray-800 border-0 py-2 px-8 focus:outline-none rounded text-lg"
+          target="_blank"
+          href="https://github.com/mdashikar/pokemon-app-nuxt"
         >
           Source Code
-        </button>
+        </a>
       </div>
     </section>
   </div>
