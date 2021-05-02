@@ -1,6 +1,9 @@
 <template>
   <div class="py-8">
-    <div class="mx-auto p-2 lg:w-1/3 md:w-1/2 w-full cursor-pointer">
+    <div
+      class="mx-auto p-2 lg:w-1/3 md:w-1/2 w-full cursor-pointer"
+      @click.prevent="goToDetailPage(pokemonData.id)"
+    >
       <div
         class="h-full flex items-center border-gray-200 border p-4 rounded-lg"
       >
@@ -14,9 +17,9 @@
             {{ pokemonData.name }}
           </h2>
           <p class="text-gray-500">
-            Base Experience: {{ pokemonData.base_experience }} XP
+            Types:
+            <span> {{ getTypes(pokemonData.types) }} </span>
           </p>
-          <p class="text-gray-500">Weight: {{ pokemonData.weight }} XP</p>
         </div>
       </div>
     </div>
@@ -31,6 +34,14 @@ export default {
   computed: {
     pokemonData() {
       return this.pokemonInfo
+    },
+  },
+  methods: {
+    getTypes(types) {
+      return types.map((type) => type.type.name).join(', ')
+    },
+    goToDetailPage(pokemonId) {
+      this.$router.push({ path: `/pokemon/details/${pokemonId}` })
     },
   },
 }

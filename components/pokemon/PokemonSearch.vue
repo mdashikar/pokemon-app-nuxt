@@ -34,7 +34,7 @@
           </svg>
         </a>
       </div>
-      <p>Need a hint? Try: ditto, ivysaur, venusaur, raticate</p>
+      <p class="py-2">Need a hint? Try: ditto, ivysaur, venusaur, raticate</p>
     </div>
   </div>
 </template>
