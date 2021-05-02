@@ -8,6 +8,7 @@
           type="search"
           name="search"
           placeholder="Search your favourte pokemon here"
+          @keyup.enter="searchPokemon"
         />
         <a
           type="submit"
@@ -34,7 +35,9 @@
           </svg>
         </a>
       </div>
-      <p class="py-2">Need a hint? Try: ditto, ivysaur, venusaur, raticate</p>
+      <p class="py-2">
+        Need a hint? Try: ditto, ivysaur, entei, skitty, pineco, steelix, dustox
+      </p>
     </div>
   </div>
 </template>
@@ -45,6 +48,13 @@ export default {
     return {
       searchText: '',
     }
+  },
+  watch: {
+    searchText(newVal, oldVal) {
+      if (!newVal.length) {
+        this.$emit('clear-search-data')
+      }
+    },
   },
   methods: {
     searchPokemon() {

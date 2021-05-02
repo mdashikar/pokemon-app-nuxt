@@ -1,6 +1,48 @@
 <template>
   <div class="py-8">
     <div class="mx-auto p-2 lg:w-1/3 md:w-1/2 w-full">
+      <div class="mb-2 mr-2 flex justify-between">
+        <button
+          class="items-center rounded-md py-2 px-4 text-gray-100 bg-gray-900 hover:bg-gray-800 focus:outline-none flex"
+          @click.prevent="goBack()"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            ></path>
+          </svg>
+          Back to home
+        </button>
+        <button
+          class="order-last items-center rounded-md py-2 px-4 text-gray-100 bg-gray-900 hover:bg-gray-800 focus:outline-none flex"
+          @click.prevent="fetchNextPokemon()"
+        >
+          Next Pokemon
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+        </button>
+      </div>
       <div
         class="h-full flex items-center border-gray-200 border p-4 rounded-lg"
       >
@@ -26,7 +68,7 @@
                 v-for="(type, index) in pokemonDetailsData.types"
                 :key="index"
                 type="button"
-                :class="`bg-blue-500 hover:bg-blue-600`"
+                :class="`bg-green-500 hover:bg-green-600`"
                 class="px-4 py-2 text-xs font-semibold tracking-wider text-white rounded capitalize"
               >
                 {{ type.type.name }}
@@ -81,6 +123,22 @@
           </div>
         </div>
       </div>
+      <div class="overflow-x-auto mt-6">
+        <div>
+          <p class="mb-2 text-lg font-bold">Abilities</p>
+          <div class="flex space-x-4">
+            <button
+              v-for="(ability, index) in pokemonDetailsData.abilities"
+              :key="index"
+              type="button"
+              :class="`bg-yellow-500 hover:bg-yellow-600`"
+              class="px-4 py-2 text-xs font-semibold tracking-wider text-white rounded capitalize"
+            >
+              {{ ability.ability.name }}
+            </button>
+          </div>
+        </div>
+      </div>
 
       <div class="overflow-x-auto mt-6">
         <table class="table-auto border-collapse w-full">
@@ -113,27 +171,22 @@ export default {
   props: {
     pokemonDetails: { type: Object, default: null },
   },
-  data() {
-    return {
-      colors: ['red', 'yellow', 'green', 'pink', 'indigo', 'purple'],
-    }
-  },
+
   computed: {
     pokemonDetailsData() {
       return this.pokemonDetails
-    },
-    randomColor() {
-      const random = Math.floor(Math.random() * this.colors.length)
-      return this.colors[random]
     },
   },
   methods: {
     getTypes(types) {
       return types.map((type) => type.type.name).join(', ')
     },
-    randomBgColor() {
-      const random = Math.floor(Math.random() * this.colors.length)
-      return this.colors[random]
+
+    fetchNextPokemon() {
+      this.$emit('fetch-next-pokemon', (this.pokemonDetailsData.id += 1))
+    },
+    goBack() {
+      this.$router.go(-1)
     },
   },
 }

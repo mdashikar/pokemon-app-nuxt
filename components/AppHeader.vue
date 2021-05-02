@@ -14,14 +14,12 @@
       </router-link>
       <nav
         class="md:ml-auto flex flex-wrap items-center text-base justify-center"
-      >
-        <a class="mr-5 hover:text-gray-900 cursor-pointer">All Pokemons</a>
-        <a class="mr-5 hover:text-gray-900 cursor-pointer">Technologies</a>
-      </nav>
-      <button
+      ></nav>
+      <router-link
+        to="/tech"
         class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
       >
-        About
+        Technologies
         <svg
           fill="none"
           stroke="currentColor"
@@ -33,7 +31,7 @@
         >
           <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
-      </button>
+      </router-link>
     </div>
   </header>
 </template>

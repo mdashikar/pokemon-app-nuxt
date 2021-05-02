@@ -1,6 +1,10 @@
 <template>
   <div>
-    <pokemon-detail v-if="pokemonDetails" :pokemon-details="pokemonDetails" />
+    <pokemon-detail
+      v-if="pokemonDetails"
+      :pokemon-details="pokemonDetails"
+      @fetch-next-pokemon="fetchPokemonDetail"
+    />
   </div>
 </template>
 
@@ -23,17 +27,20 @@ export default {
     },
   },
   created() {
-    this.fetchPokemonDetail()
+    this.fetchPokemonDetail(this.pokemonId)
+    this.$nuxt.$loading.start()
   },
   methods: {
-    fetchPokemonDetail() {
-      fetch(`${this.apiBaseUrl}${this.pokemonId}`)
+    fetchPokemonDetail(id) {
+      fetch(`${this.apiBaseUrl}${id}`)
         .then((res) => res.json())
         .then((data) => {
           this.pokemonDetails = data
+          this.$nuxt.$loading.finish()
         })
         .catch((error) => {
           console.log(error)
+          this.$nuxt.$loading.finish()
         })
     },
   },
