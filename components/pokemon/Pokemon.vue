@@ -42,10 +42,9 @@ export default {
           this.showNotFound = false
           this.pokemonInfo = data
         })
-        .catch((error) => {
+        .catch(() => {
           this.$nuxt.$loading.finish()
           this.showNotFound = true
-          console.log(error)
           this.showSearchResult = false
         })
     },
